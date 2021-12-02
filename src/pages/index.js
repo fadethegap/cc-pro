@@ -10,7 +10,7 @@ import Header2 from "../components/Header2";
 
 export default function Home({ data }) {
   const assets = data.assets.nodes;
-
+  console.log(assets);
   return (
     <>
       <main class="flex flex-col h-screen">
