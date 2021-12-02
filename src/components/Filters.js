@@ -84,7 +84,7 @@ export default function Filters({ assets }) {
       <div className="flex flex-col px-3 py-2 text-sm text-bue-100">
         <ul>
           {platforms().map((platform) => (
-            <li key={nanoid}>
+            <li key={nanoid()}>
               <Checkbox labelText={platform} />
             </li>
           ))}
@@ -94,7 +94,7 @@ export default function Filters({ assets }) {
       <div className="flex flex-col px-3 py-2 text-sm text-blue-100">
         <ul>
           {assetTypes().map((asset) => (
-            <li key={nanoid}>
+            <li key={nanoid()}>
               <Checkbox labelText={asset} />
             </li>
           ))}

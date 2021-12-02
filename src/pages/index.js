@@ -10,16 +10,16 @@ import Header2 from "../components/Header2";
 
 export default function Home({ data }) {
   const assets = data.assets.nodes;
-  console.log(assets);
+  console.log(nanoid());
   return (
     <>
-      <main class="flex flex-col h-screen">
+      <main className="flex flex-col h-screen">
         <Header2 />
-        <div class="flex flex-1 overflow-hidden">
-          <div class="flex flex-col bg-black w-64 p-4">
+        <div className="flex flex-1 overflow-hidden">
+          <div className="flex flex-col bg-black w-64 p-4">
             <Filters assets={assets} />
           </div>
-          <div class="flex flex-1 flex-col">
+          <div className="flex flex-1 flex-col">
             <div className="grid md:grid-cols-2 xl:grid-cols-3 bg-black overflow-y-auto ">
               {assets.map((asset) => (
                 <Asset key={nanoid()} asset={asset} />
