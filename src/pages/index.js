@@ -10,7 +10,10 @@ import Header2 from "../components/Header2";
 
 export default function Home({ data }) {
   const assets = data.assets.nodes;
-  console.log(nanoid());
+  console.log(assets);
+  const generateKey = (pre) => {
+    return `${pre}_${new Date().getTime()}`;
+  };
   return (
     <>
       <main className="flex flex-col h-screen">
@@ -21,8 +24,8 @@ export default function Home({ data }) {
           </div>
           <div className="flex flex-1 flex-col">
             <div className="grid md:grid-cols-2 xl:grid-cols-3 bg-black overflow-y-auto ">
-              {assets.map((asset) => (
-                <Asset key={nanoid()} asset={asset} />
+              {assets.map((asset, index) => (
+                <Asset key={generateKey(index)} asset={asset} />
               ))}
             </div>
           </div>

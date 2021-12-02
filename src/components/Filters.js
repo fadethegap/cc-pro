@@ -78,14 +78,22 @@ export default function Filters({ assets }) {
     return distinct;
   };
 
+  const generateKey = (pre) => {
+    return `${pre}_${new Date().getTime()}`;
+  };
+
+  const handleChange = (e) => {
+    console.log(e.target.id);
+  };
+
   return (
     <div className=" flex flex-col text-blue-100">
       <div className="text-bue-100">Platforms</div>
       <div className="flex flex-col px-3 py-2 text-sm text-bue-100">
         <ul>
-          {platforms().map((platform) => (
-            <li key={nanoid()}>
-              <Checkbox labelText={platform} />
+          {platforms().map((platform, index) => (
+            <li key={generateKey(index)}>
+              <Checkbox labelText={platform} handleChange={handleChange} />
             </li>
           ))}
         </ul>
@@ -93,9 +101,9 @@ export default function Filters({ assets }) {
       <div className="text-blue-100 mt-2">Asset Type</div>
       <div className="flex flex-col px-3 py-2 text-sm text-blue-100">
         <ul>
-          {assetTypes().map((asset) => (
-            <li key={nanoid()}>
-              <Checkbox labelText={asset} />
+          {assetTypes().map((asset, index) => (
+            <li key={generateKey(index)}>
+              <Checkbox labelText={asset} handleChange={handleChange} />
             </li>
           ))}
         </ul>

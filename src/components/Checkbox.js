@@ -1,15 +1,16 @@
 import React from "react";
 
-export default function Checkbox({ labelText }) {
+export default function Checkbox({ labelText, handleChange }) {
   return (
     <div className="">
       <div className="flex items-center mr-4 mb-2">
         <input
           type="checkbox"
-          id="A3-yes"
+          id={labelText}
           name="A3-confirmation"
           value="yes"
           className="opacity-0 absolute h-8 w-8"
+          onChange={handleChange}
         />
         <div className="bg-blue-100 border-2 rounded-md border-blue-400 w-5 h-5 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-blue-500">
           <svg
