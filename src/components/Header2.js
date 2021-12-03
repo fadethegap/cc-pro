@@ -2,12 +2,8 @@ import React, { useState } from "react";
 import { Link } from "gatsby";
 
 export default function Header2() {
-  const [message, setMessage] = useState();
   const handleClick = () => {
-    setMessage("Login not yet functional");
-    setTimeout(function () {
-      setMessage("");
-    }, 3000);
+    alert("Login not yet functional");
   };
 
   return (
@@ -31,7 +27,6 @@ export default function Header2() {
           Content Creator Pro
         </div>
       </Link>
-      <div className="text-red-500 text-3xl font-extrabold">{message}</div>
       <div>
         <Link to="/">
           <button
