@@ -29,7 +29,7 @@ export default function Header2() {
       <div>
         <Link to="/">
           <button
-            className="bg-blue-300 text-blue-500 hover:bg-blue-500 hover:text-blue-100 px-5 py-1 rounded"
+            className="bg-gray-500 text-gray-300 hover:bg-gray-100 hover:text-gray-500 transition duration-200 px-5 py-1 rounded"
             onClick={handleClick}
           >
             Login
