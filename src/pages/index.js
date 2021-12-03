@@ -9,18 +9,25 @@ import { graphql } from "gatsby";
 import Header2 from "../components/Header2";
 
 export default function Home({ data }) {
-  const assets = data.assets.nodes;
+  // const assets = data.assets.nodes;
+  const [assets, setAssets] = useState(data.assets.nodes);
   console.log(assets);
+
   const generateKey = (pre) => {
     return `${pre}_${new Date().getTime()}`;
   };
+
+  const handleChange = (e) => {
+    console.log(e.target.id);
+  };
+
   return (
     <>
       <main className="flex flex-col h-screen">
         <Header2 />
         <div className="flex flex-1 overflow-hidden">
           <div className="flex flex-col bg-black w-64 p-4">
-            <Filters assets={assets} />
+            <Filters assets={assets} handleChange={handleChange} />
           </div>
           <div className="flex flex-1 flex-col">
             <div className="grid md:grid-cols-2 xl:grid-cols-3 bg-black overflow-y-auto ">
@@ -35,7 +42,7 @@ export default function Home({ data }) {
     </>
   );
 }
-
+const queryString = ", divinciResolve: {eq: true}";
 export const query = graphql`
   {
     assets: allDatoCmsAsset(
