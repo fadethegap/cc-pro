@@ -9,7 +9,7 @@ export default function Filters({ assets }) {
     new Array(15).fill(false)
   );
 
-  const handlePlatformOnChange = (position) => {
+  const handlePlatformOnChange = (position, handlePlatformClick) => {
     const updatedCheckedState = platformCheckedState.map((item, index) =>
       index === position ? !item : item
     );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Filters from "../components/Filters";
 import Asset from "../components/Asset";
 import Footer2 from "../components/Footer2";
@@ -8,7 +8,6 @@ import Header2 from "../components/Header2";
 export default function Home({ data }) {
   // const assets = data.assets.nodes;
   const [assets] = useState(data.assets.nodes);
-  // console.log(assets);
 
   const generateKey = (pre) => {
     return `${pre}_${new Date().getTime()}`;

@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "gatsby";
 
 export default function Header2() {
+  const [message, setMessage] = useState();
   const handleClick = () => {
-    alert("Login not yet available.");
+    setMessage("Login not yet functional");
+    setTimeout(function () {
+      setMessage("");
+    }, 3000);
   };
+
   return (
     <div className="flex items-center justify-between bg-gradient-to-r from-black to-gray-700 text-blue-100 h-16 p-4">
       <Link className="flex items-center ml-2 text-blue-300" to="/">
@@ -26,6 +31,7 @@ export default function Header2() {
           Content Creator Pro
         </div>
       </Link>
+      <div className="text-red-500 text-3xl font-extrabold">{message}</div>
       <div>
         <Link to="/">
           <button
