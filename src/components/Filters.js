@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import useFilterAssets from "../utils/useFilterAssets";
 
 export default function Filters({ assets }) {
-  // console.log(assets);
+  const { platformAssets, typeAssets } = useFilterAssets(assets);
+
   const [platformCheckedState, setPlatformCheckedState] = useState(
     new Array(4).fill(false)
   );
@@ -9,146 +11,66 @@ export default function Filters({ assets }) {
     new Array(15).fill(false)
   );
 
-  const handlePlatformOnChange = (position, handlePlatformClick) => {
+  const handlePlatformOnChange = (position) => {
     const updatedCheckedState = platformCheckedState.map((item, index) =>
       index === position ? !item : item
     );
     setPlatformCheckedState(updatedCheckedState);
-    alert("Filters not yet functional.");
   };
-
-  const generateKey = (pre) => {
-    return `${pre}_${new Date().getTime()}`;
-  };
-
-  useEffect(() => {
-    // console.log(platformCheckedState);
-  }, [platformCheckedState]);
 
   const handleAssetTypeOnChange = (position) => {
     const updatedCheckedState = assetTypeCheckedState.map((item, index) =>
       index === position ? !item : item
     );
     setAssetTypeCheckedState(updatedCheckedState);
-    alert("Filters not yet functional.");
   };
+  console.log(platformCheckedState);
+  console.log(assetTypeCheckedState);
 
-  // Array to hold all filtered assets
+  const loading = true;
+
+  // const platformAssetsInit = [
+  //   { i: 0, id: "premierePro", name: "Premiere Pro", count: 0 },
+  //   { i: 1, id: "afterEffects", name: "After Effects", count: 0 },
+  //   { i: 2, id: "finalCutPro", name: "Final Cut Pro", count: 0 },
+  //   { i: 3, id: "divinciResolve", name: "Divinci Resolve", count: 0 },
+  // ];
+
+  // const typeAssetsInit = [
+  //   { i: 4, id: "backgrounds", name: "Backgrounds", count: 0 },
+  //   { i: 5, id: "edits", name: "Edits", count: 0 },
+  //   { i: 6, id: "effects", name: "Effects", count: 0 },
+  //   { i: 7, id: "intros", name: "Intros", count: 0 },
+  //   { i: 8, id: "logo", name: "Logo", count: 0 },
+  //   { i: 9, id: "lowerThirds", name: "Lower Thirds", count: 0 },
+  //   { i: 10, id: "luts", name: "Luts", count: 0 },
+  //   { i: 11, id: "other", name: "Other", count: 0 },
+  //   { i: 12, id: "overlays", name: "Overlays", count: 0 },
+  //   { i: 13, id: "photoVideo", name: "Photo / Video", count: 0 },
+  //   { i: 14, id: "slideshow", name: "Slideshow", count: 0 },
+  //   { i: 15, id: "titles", name: "Titles", count: 0 },
+  //   { i: 16, id: "text", name: "Text", count: 0 },
+  //   { i: 17, id: "toolKits", name: "Tool Kits", count: 0 },
+  //   { i: 18, d: "transitions", name: "Transitions", count: 0 },
+  // ];
+  // console.log(isLoading);
+
+  // const platforms = () => {
+  //   return platformAssets1;
+  // };
+  // const assetTypes = () => {
+  //   return typeAssets1;
+  // };
+
   const platforms = () => {
-    let ppCount = 0;
-    let aeCount = 0;
-    let fcpCount = 0;
-    let drCount = 0;
-
-    assets.forEach((asset) => {
-      if (asset.premierePro) {
-        ppCount++;
-      }
-      if (asset.afterEffects) {
-        aeCount++;
-      }
-      if (asset.finalCutPro) {
-        fcpCount++;
-      }
-      if (asset.divinciResolve) {
-        drCount++;
-      }
-    });
-    const pForms = [
-      { id: "premierePro", name: "Premiere Pro", count: ppCount },
-      { id: "afterEffects", name: "After Effects", count: aeCount },
-      { id: "finalCutPro", name: "Final Cut Pro", count: fcpCount },
-      { id: "divinciResolve", name: "Divinci Resolve", count: drCount },
-    ];
-    // const res = pForms.filter((o) => o.count > 0);
-    return pForms;
+    return platformAssets;
+  };
+  const assetTypes = () => {
+    return typeAssets;
   };
 
-  const assetTypes = () => {
-    let bgCount = 0;
-    let editCount = 0;
-    let effectCount = 0;
-    let introCount = 0;
-    let logoCount = 0;
-    let ltCount = 0;
-    let lutsCount = 0;
-    let otherCount = 0;
-    let overlayCount = 0;
-    let pvCount = 0;
-    let ssCount = 0;
-    let titleCount = 0;
-    let textCount = 0;
-    let tkCount = 0;
-    let transCount = 0;
-
-    assets.forEach((asset) => {
-      if (asset.backgrounds) {
-        bgCount++;
-      }
-      if (asset.edits) {
-        editCount++;
-      }
-      if (asset.effects) {
-        effectCount++;
-      }
-      if (asset.intros) {
-        introCount++;
-      }
-      if (asset.logo) {
-        logoCount++;
-      }
-      if (asset.lowerThirds) {
-        ltCount++;
-      }
-      if (asset.luts) {
-        lutsCount++;
-      }
-      if (asset.other) {
-        otherCount++;
-      }
-      if (asset.overlays) {
-        overlayCount++;
-      }
-      if (asset.photoVideo) {
-        pvCount++;
-      }
-      if (asset.slideshow) {
-        ssCount++;
-      }
-      if (asset.titles) {
-        titleCount++;
-      }
-      if (asset.text) {
-        textCount++;
-      }
-      if (asset.toolkits) {
-        tkCount++;
-      }
-      if (asset.transitions) {
-        transCount++;
-      }
-    });
-
-    const oAssets = [
-      { id: "backgrounds", name: "Backgrounds", count: bgCount },
-      { id: "edits", name: "Edits", count: editCount },
-      { id: "effects", name: "Effects", count: effectCount },
-      { id: "intros", name: "Intros", count: introCount },
-      { id: "logo", name: "Logo", count: logoCount },
-      { id: "lowerThirds", name: "Lower Thirds", count: ltCount },
-      { id: "luts", name: "Luts", count: lutsCount },
-      { id: "other", name: "Other", count: otherCount },
-      { id: "overlays", name: "Overlays", count: overlayCount },
-      { id: "photoVideo", name: "Photo / Video", count: pvCount },
-      { id: "slideshow", name: "Slideshow", count: ssCount },
-      { id: "titles", name: "Titles", count: titleCount },
-      { id: "text", name: "Text", count: textCount },
-      { id: "toolKits", name: "Tool Kits", count: tkCount },
-      { id: "transitions", name: "Transitions", count: transCount },
-    ];
-
-    // const res = oAssets.filter((a) => a.count > 0);
-    return oAssets;
+  const generateKey = (pre) => {
+    return `${pre}_${new Date().getTime()}`;
   };
 
   return (
@@ -195,7 +117,7 @@ export default function Filters({ assets }) {
                   <label htmlFor="A3-yes" className="select-none text-blue-100">
                     {platform.name}
                   </label>
-                  <span className="text-blue-100 pl-2">{`(${platform.count})`}</span>
+                  <span className="text-blue-400 pl-2">{`(${platform.count})`}</span>
                 </div>
               </div>
             </li>
@@ -246,7 +168,7 @@ export default function Filters({ assets }) {
                   <label htmlFor="A3-yes" className="select-none text-blue-100">
                     {asset.name}
                   </label>
-                  <span className="text-blue-100 pl-2">{`(${asset.count})`}</span>
+                  <span className="text-blue-400 pl-2">{`(${asset.count})`}</span>
                 </div>
               </div>
             </li>

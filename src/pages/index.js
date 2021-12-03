@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Filters from "../components/Filters";
 import Asset from "../components/Asset";
 import Footer2 from "../components/Footer2";
@@ -6,15 +6,11 @@ import { graphql } from "gatsby";
 import Header2 from "../components/Header2";
 
 export default function Home({ data }) {
-  // const assets = data.assets.nodes;
   const [assets] = useState(data.assets.nodes);
 
+  // console.log(assets);
   const generateKey = (pre) => {
     return `${pre}_${new Date().getTime()}`;
-  };
-
-  const handleChange = (e) => {
-    console.log(e.target.id);
   };
 
   return (
@@ -23,7 +19,7 @@ export default function Home({ data }) {
         <Header2 />
         <div className="flex flex-1 overflow-hidden">
           <div className="flex flex-col bg-black w-64 p-4">
-            <Filters assets={assets} handleChange={handleChange} />
+            <Filters assets={assets} />
           </div>
           <div className="flex flex-1 flex-col">
             <div className="grid md:grid-cols-2 xl:grid-cols-3 bg-black overflow-y-auto ">
