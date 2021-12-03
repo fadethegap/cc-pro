@@ -1,7 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "gatsby";
-import { nanoid } from "nanoid";
-import Navigation from "../components/Navigation";
+import React, { useState } from "react";
 import Filters from "../components/Filters";
 import Asset from "../components/Asset";
 import Footer2 from "../components/Footer2";
@@ -10,8 +7,8 @@ import Header2 from "../components/Header2";
 
 export default function Home({ data }) {
   // const assets = data.assets.nodes;
-  const [assets, setAssets] = useState(data.assets.nodes);
-  console.log(assets);
+  const [assets] = useState(data.assets.nodes);
+  // console.log(assets);
 
   const generateKey = (pre) => {
     return `${pre}_${new Date().getTime()}`;
@@ -42,7 +39,6 @@ export default function Home({ data }) {
     </>
   );
 }
-const queryString = ", divinciResolve: {eq: true}";
 export const query = graphql`
   {
     assets: allDatoCmsAsset(
