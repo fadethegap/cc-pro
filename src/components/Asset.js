@@ -23,8 +23,8 @@ export default function Asset({ asset }) {
         classesToApply="clip rounded-t-xl"
       />
 
-      <div className="relative bg-gray-800 rounded-b-xl h-16">
-        <div className="absolute top-3 left-2 text-sm font-medium text-blue-100">
+      <div className="relative bg-gray-800 rounded-b-xl h-16 z-10">
+        <div className="absolute top-3 left-2 text-sm font-medium text-blue-100 z-10">
           {assetTitle}
         </div>
         <div className="absolute bottom-3 left-2 text-xs font-light text-blue-100">
