@@ -10358,6 +10358,11 @@
     "react-fast-compare" "^3.1.1"
     "react-side-effect" "^2.1.0"
 
+"react-icons@^4.3.1":
+  "integrity" "sha512-cB10MXLTs3gVuXimblAdI71jrJx8njrJZmNMEMC+sQu5B/BIOmlsAjskdqpn81y8UBVEGuHODd7/ci5DvoSzTQ=="
+  "resolved" "https://registry.npmjs.org/react-icons/-/react-icons-4.3.1.tgz"
+  "version" "4.3.1"
+
 "react-intersection-observer@^8.31.1":
   "integrity" "sha512-QTcea+n28AvOHbTku+jErfQqknbc4Nuh7EUNik8p/JMN56W2Jhjs+qcYZzQhAoyLX8pZD0QXpYX0lW87faackQ=="
   "resolved" "https://registry.npmjs.org/react-intersection-observer/-/react-intersection-observer-8.32.2.tgz"
