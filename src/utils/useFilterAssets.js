@@ -103,9 +103,8 @@ const useFilterAssets = (assets) => {
     { i: 15, id: "titles", name: "Titles", count: titleCount },
     { i: 16, id: "text", name: "Text", count: textCount },
     { i: 17, id: "toolKits", name: "Tool Kits", count: tkCount },
-    { i: 18, d: "transitions", name: "Transitions", count: transCount },
+    { i: 18, id: "transitions", name: "Transitions", count: transCount },
   ];
-
   const platformAssets = platforms;
   const typeAssets = assetTypes;
   return { platformAssets, typeAssets };

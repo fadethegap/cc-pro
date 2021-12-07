@@ -1,3 +1,40 @@
+// const platformAssetsInit = [
+//   { i: 0, id: "premierePro", name: "Premiere Pro", count: 0 },
+//   { i: 1, id: "afterEffects", name: "After Effects", count: 0 },
+//   { i: 2, id: "finalCutPro", name: "Final Cut Pro", count: 0 },
+//   { i: 3, id: "divinciResolve", name: "Divinci Resolve", count: 0 },
+// ];
+
+// const typeAssetsInit = [
+//   { i: 4, id: "backgrounds", name: "Backgrounds", count: 0 },
+//   { i: 5, id: "edits", name: "Edits", count: 0 },
+//   { i: 6, id: "effects", name: "Effects", count: 0 },
+//   { i: 7, id: "intros", name: "Intros", count: 0 },
+//   { i: 8, id: "logo", name: "Logo", count: 0 },
+//   { i: 9, id: "lowerThirds", name: "Lower Thirds", count: 0 },
+//   { i: 10, id: "luts", name: "Luts", count: 0 },
+//   { i: 11, id: "other", name: "Other", count: 0 },
+//   { i: 12, id: "overlays", name: "Overlays", count: 0 },
+//   { i: 13, id: "photoVideo", name: "Photo / Video", count: 0 },
+//   { i: 14, id: "slideshow", name: "Slideshow", count: 0 },
+//   { i: 15, id: "titles", name: "Titles", count: 0 },
+//   { i: 16, id: "text", name: "Text", count: 0 },
+//   { i: 17, id: "toolKits", name: "Tool Kits", count: 0 },
+//   { i: 18, d: "transitions", name: "Transitions", count: 0 },
+// ];
+// console.log(isLoading);
+
+// useEffect(() => {
+//   setAssets(assetsInit);
+// });
+
+// const platforms = () => {
+//   return platformAssets1;
+// };
+// const assetTypes = () => {
+//   return typeAssets1;
+// };
+
 const assetsInit = [
   {
     i: 0,
@@ -266,3 +303,49 @@ const assetsInit = [
     assetTitle: "Falling For You",
   },
 ];
+
+// {assetTypes().map((asset, index) => (
+//             <li
+//               key={generateKey(index)}
+//               className={`${
+//                 asset.count === 0 ? "invisible absolute left-9999" : ""
+//               }`}
+//             >
+//               <div className="">
+//                 <div className="flex items-center mr-4 mb-2">
+//                   <input
+//                     type="checkbox"
+//                     id={`${asset.name}-${index}`}
+//                     name={asset.name}
+//                     value={asset.name}
+//                     checked={assetTypeCheckedState[index]}
+//                     onChange={() => handleAssetTypeOnChange(index)}
+//                     className={`opacity-0 absolute h-8 w-8 ${
+//                       asset.count === 0 ? "invisible" : ""
+//                     }`}
+//                   />
+//                   <div className="bg-blue-100 border-2 rounded-md border-blue-400 w-5 h-5 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-blue-500">
+//                     <svg
+//                       className="fill-current hidden w-3 h-3 text-blue-600 pointer-events-none"
+//                       version="1.1"
+//                       viewBox="0 0 17 12"
+//                       xmlns="http://www.w3.org/2000/svg"
+//                     >
+//                       <g fill="none" fillRule="evenodd">
+//                         <g
+//                           transform="translate(-9 -11)"
+//                           fill="#1F73F1"
+//                           fillRule="nonzero"
+//                         >
+//                           <path d="m25.576 11.414c0.56558 0.55188 0.56558 1.4439 0 1.9961l-9.404 9.176c-0.28213 0.27529-0.65247 0.41385-1.0228 0.41385-0.37034 0-0.74068-0.13855-1.0228-0.41385l-4.7019-4.588c-0.56584-0.55188-0.56584-1.4442 0-1.9961 0.56558-0.55214 1.4798-0.55214 2.0456 0l3.679 3.5899 8.3812-8.1779c0.56558-0.55214 1.4798-0.55214 2.0456 0z" />
+//                         </g>
+//                       </g>
+//                     </svg>
+//                   </div>
+//                   <label htmlFor="A3-yes" className="select-none text-blue-100">
+//                     {asset.name}
+//                   </label>
+//                   <span className="text-blue-400 pl-2">{`(${asset.count})`}</span>
+//                 </div>
+//               </div>
+//             </li>
