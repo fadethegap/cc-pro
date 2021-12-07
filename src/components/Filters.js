@@ -4,7 +4,7 @@ import Filter from "./Filter";
 
 export default function Filters({ assets, setAssets }) {
   const { platformAssets, typeAssets } = useFilterAssets(assets);
-  const { filters, setfilters } = useState("");
+  const [filters, setfilters] = useState("backgrounds");
 
   const [platformCheckedState, setPlatformCheckedState] = useState(
     new Array(4).fill(false)
@@ -19,21 +19,18 @@ export default function Filters({ assets, setAssets }) {
     );
     setPlatformCheckedState(updatedCheckedState);
 
-    const currentFilters = filters;
-    console.log(currentFilters);
-
     //Update filters
-    // const currentFilters = filters;
-    // let index;
+    let currentFilters = filters;
+    let index;
 
-    // if (updatedCheckedState) {
-    //   currentFilters.push(id);
-    // } else {
-    //   index = currentFilters.indexOf(id);
-    //   currentFilters.splice(index, 1);
-    // }
+    if (updatedCheckedState) {
+      currentFilters.push(+id);
+    } else {
+      index = currentFilters.indexOf(id);
+      currentFilters.splice(index, 1);
+    }
 
-    // console.log(currentFilters);
+    console.log(currentFilters);
   };
 
   const handleAssetTypeOnChange = (position, id) => {
