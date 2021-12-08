@@ -7,13 +7,6 @@ export default function Checkbox({
   index,
   count,
 }) {
-  const handleOnChange = (position) => {
-    const updatedCheckedState = checkedState.map((item, index) =>
-      index === position ? !item : item
-    );
-    alert(position);
-    setCheckedState(updatedCheckedState);
-  };
   return (
     <div className="">
       <div className="flex items-center mr-4 mb-2">

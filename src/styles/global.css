@@ -9,6 +9,10 @@ input:checked + div svg {
   @apply block;
 }
 
+.body {
+  background-color: black;
+}
+
 .header {
   /* grid-area: header;
   height: 4rem;

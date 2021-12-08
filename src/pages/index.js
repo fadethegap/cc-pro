@@ -20,7 +20,7 @@ export default function Home({ data }) {
 
   return (
     <>
-      <main className="flex flex-col h-screen">
+      <main className="flex flex-col h-screen bg-black">
         <Header2 />
         <div className="flex text-blue-100 bg-black md:hidden">
           <div onClick={handleSidebar}>

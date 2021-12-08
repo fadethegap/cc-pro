@@ -3,75 +3,105 @@ import useFilterAssets from "../utils/useFilterAssets";
 import Filter from "./Filter";
 
 export default function Filters({ assets, setAssets }) {
-  const { platformAssets, typeAssets } = useFilterAssets(assets);
-  const [filters, setfilters] = useState("backgrounds");
+  const [cmsAssets, setCmsAssets] = useState(assets);
+  const [filters, setfilters] = useState([]);
+  const [platformPosition, setPlatformPosition] = useState(null);
+  const [selectedPlatform, setSelectedPlatform] = useState(null);
+  const [typeAssetPosition, setTypeAssetPosition] = useState(null);
+  const [selectedTypeAsset, setSelectedTypeAsset] = useState(null);
+  const [filteredAssets, setFilteredAssets] = useState(assets);
+  const { platformAssets, typeAssets } = useFilterAssets(filteredAssets);
 
+  // Create empty arrays to hold checkbox states
   const [platformCheckedState, setPlatformCheckedState] = useState(
     new Array(4).fill(false)
+    // [false, true, false, false]
   );
   const [assetTypeCheckedState, setAssetTypeCheckedState] = useState(
     new Array(15).fill(false)
   );
 
+  // Update the above checkbox array and set state for useEffect below
   const handlePlatformOnChange = (position, id) => {
+    let platformIndex;
     const updatedCheckedState = platformCheckedState.map((item, index) =>
       index === position ? !item : item
     );
     setPlatformCheckedState(updatedCheckedState);
-
-    //Update filters
-    let currentFilters = filters;
-    let index;
-
-    if (updatedCheckedState) {
-      currentFilters.push(+id);
-    } else {
-      index = currentFilters.indexOf(id);
-      currentFilters.splice(index, 1);
-    }
-
-    console.log(currentFilters);
+    setSelectedPlatform(id);
+    setPlatformPosition(position);
   };
 
+  // Add platforms to the filters state array
+  useEffect(() => {
+    const currentFilters = filters;
+    let index;
+
+    if (platformCheckedState[platformPosition]) {
+      currentFilters.push(selectedPlatform);
+    } else {
+      index = currentFilters.indexOf(selectedPlatform);
+      currentFilters.splice(index, 1);
+    }
+    setfilters(currentFilters);
+    getFilteredAssets();
+  }, [platformCheckedState]);
+
+  // Update the above checkbox array and set state for useEffect below
   const handleAssetTypeOnChange = (position, id) => {
     const updatedCheckedState = assetTypeCheckedState.map((item, index) =>
       index === position ? !item : item
     );
-
-    console.log(position);
-    console.log(id);
     setAssetTypeCheckedState(updatedCheckedState);
+    setSelectedTypeAsset(id);
+    setTypeAssetPosition(position);
   };
 
-  const platforms = () => {
-    return platformAssets;
-  };
-  const assetTypes = () => {
-    return typeAssets;
-  };
+  // Add typeAssets to the filters state array
+  useEffect(() => {
+    const currentFilters = filters;
+    let index;
 
-  const generateKey = (pre) => {
-    return `${pre}_${new Date().getTime()}`;
-  };
+    if (assetTypeCheckedState[typeAssetPosition]) {
+      currentFilters.push(selectedTypeAsset);
+    } else {
+      index = currentFilters.indexOf(selectedTypeAsset);
+      currentFilters.splice(index, 1);
+    }
+    setfilters(currentFilters);
+    getFilteredAssets();
+  }, [assetTypeCheckedState]);
 
-  let onChangeFunction = handlePlatformOnChange;
-  let itemCheckedState = platformCheckedState;
-  // console.log(itemCheckedState[1]);
+  function reduceFilters(assets, filters) {
+    const filterCount = filters.length;
+    let result = [];
+    assets.forEach((asset) => {
+      let test = 0;
+      filters.forEach((filter, index) => {
+        if (asset[filter]) {
+          test++;
+        }
+        if (test === filterCount) {
+          result.push(asset);
+        }
+      });
+    });
+    let distincResults = [...new Set(result)];
+    return distincResults;
+  }
+  // Filter the assets
+  function getFilteredAssets() {
+    let result = [];
 
-  // onChangeFunction(0);
-  // console.log(itemCheckedState[0]);
-  // const filters = platformAssets.map((platform, index) => {
-  //   let checkedState = itemCheckedState[index];
-  //   return (
-  //     <Filter
-  //       key={index}
-  //       item={platform}
-  //       idx={index}
-  //       onChangeFunction={handlePlatformOnChange}
-  //       itemCheckedState={checkedState}
-  //     />
-  //   );
-  // });
+    if (filters.length === 0) {
+      result = cmsAssets;
+    } else {
+      result = reduceFilters(cmsAssets, filters);
+    }
+
+    setFilteredAssets(result);
+    setAssets(result);
+  }
 
   return (
     // <></>

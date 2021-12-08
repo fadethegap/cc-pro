@@ -1,4 +1,9 @@
+import React, { useState } from "react";
+
 const useFilterAssets = (assets) => {
+  // const [platformAssets, setPlatformAssets] = useState(null);
+  // const [typeAssets, setTypeAssets] = useState(null);
+
   let ppCount = 0;
   let aeCount = 0;
   let fcpCount = 0;
@@ -102,9 +107,11 @@ const useFilterAssets = (assets) => {
     { i: 14, id: "slideshow", name: "Slideshow", count: ssCount },
     { i: 15, id: "titles", name: "Titles", count: titleCount },
     { i: 16, id: "text", name: "Text", count: textCount },
-    { i: 17, id: "toolKits", name: "Tool Kits", count: tkCount },
+    { i: 17, id: "toolkits", name: "Tool Kits", count: tkCount },
     { i: 18, id: "transitions", name: "Transitions", count: transCount },
   ];
+  // setPlatformAssets(platforms);
+  // setTypeAssets(assetTypes);
   const platformAssets = platforms;
   const typeAssets = assetTypes;
   return { platformAssets, typeAssets };
