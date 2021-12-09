@@ -9,18 +9,22 @@ import * as BiIcons from "react-icons/bi";
 export default function Home({ data }) {
   const [assets, setAssets] = useState(data.assets.nodes);
   const [showSidebar, setShowSidebar] = useState(false);
+  // Create empty arrays to hold checkbox states
+  // const [platformCheckedState, setPlatformCheckedState] = useState(
+  //   new Array(4).fill(false)
+  //   // [false, true, false, false]
+  // );
+  // const [assetTypeCheckedState, setAssetTypeCheckedState] = useState(
+  //   new Array(15).fill(false)
+  // );
 
   const handleSidebar = () => {
     setShowSidebar(!showSidebar);
   };
-  // console.log(assets);
-  const generateKey = (pre) => {
-    return `${pre}_${new Date().getTime()}`;
-  };
 
   return (
     <>
-      <main className="flex flex-col h-screen bg-black">
+      <main className="flex flex-col h-screen bg-black z-50">
         <Header2 />
         <div className="flex text-blue-100 bg-black md:hidden">
           <div onClick={handleSidebar}>
@@ -31,10 +35,17 @@ export default function Home({ data }) {
             )}
           </div>
           <div>
-            {showSidebar ? (
+            {/* {showSidebar ? (
               <Filters assets={assets} setAssets={setAssets} />
             ) : (
               ""
+            )} */}
+            {showSidebar && (
+              <Filters
+                assets={assets}
+                setAssets={setAssets}
+                showSidebar={showSidebar}
+              />
             )}
           </div>
         </div>
@@ -45,40 +56,13 @@ export default function Home({ data }) {
           <div className="flex flex-1 flex-col">
             <div className="grid md:grid-cols-2 xl:grid-cols-3 bg-black overflow-y-auto ">
               {assets.map((asset, index) => (
-                <Asset key={generateKey(index)} asset={asset} />
+                <Asset key={asset.id} asset={asset} />
               ))}
             </div>
           </div>
         </div>
         <Footer2 />
       </main>
-      {/* <Header2 />
-      <main className="relative min-h-screen flex">
-        <div className="text-blue-100 bg-black" onClick={handleSidebar}>
-          {">>"}
-        </div>
-        <div
-          className={`bg-black md:w-64 w-screen h-full p-4 z-50 md:transform none md:relative  ${
-            showSidebar ? "" : "absolute transform -translate-x-full"
-          }`}
-        >
-          <Filters assets={assets} setAssets={setAssets} />
-          <div
-            className="text-blue-100 absolute top-2 right-2"
-            onClick={handleSidebar}
-          >
-            X
-          </div>
-        </div>
-        <div className="flex flex-1 flex-col">
-          <div className="grid md:grid-cols-2 xl:grid-cols-3 bg-black overflow-y-auto ">
-            {assets.map((asset, index) => (
-              <Asset key={generateKey(index)} asset={asset} />
-            ))}
-          </div>
-        </div>
-      </main>
-      <Footer2 /> */}
     </>
   );
 }

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import useFilterAssets from "../utils/useFilterAssets";
 import Filter from "./Filter";
 
-export default function Filters({ assets, setAssets }) {
-  const [cmsAssets, setCmsAssets] = useState(assets);
+export default function Filters({ assets, setAssets, showSidebar }) {
+  const [cmsAssets] = useState(assets);
   const [filters, setfilters] = useState([]);
   const [platformPosition, setPlatformPosition] = useState(null);
   const [selectedPlatform, setSelectedPlatform] = useState(null);
@@ -20,10 +20,9 @@ export default function Filters({ assets, setAssets }) {
   const [assetTypeCheckedState, setAssetTypeCheckedState] = useState(
     new Array(15).fill(false)
   );
-
+  console.log(platformCheckedState);
   // Update the above checkbox array and set state for useEffect below
   const handlePlatformOnChange = (position, id) => {
-    let platformIndex;
     const updatedCheckedState = platformCheckedState.map((item, index) =>
       index === position ? !item : item
     );
@@ -36,7 +35,6 @@ export default function Filters({ assets, setAssets }) {
   useEffect(() => {
     const currentFilters = filters;
     let index;
-
     if (platformCheckedState[platformPosition]) {
       currentFilters.push(selectedPlatform);
     } else {
@@ -45,7 +43,7 @@ export default function Filters({ assets, setAssets }) {
     }
     setfilters(currentFilters);
     getFilteredAssets();
-  }, [platformCheckedState]);
+  }, [platformCheckedState, showSidebar]);
 
   // Update the above checkbox array and set state for useEffect below
   const handleAssetTypeOnChange = (position, id) => {
@@ -61,7 +59,6 @@ export default function Filters({ assets, setAssets }) {
   useEffect(() => {
     const currentFilters = filters;
     let index;
-
     if (assetTypeCheckedState[typeAssetPosition]) {
       currentFilters.push(selectedTypeAsset);
     } else {
@@ -70,7 +67,7 @@ export default function Filters({ assets, setAssets }) {
     }
     setfilters(currentFilters);
     getFilteredAssets();
-  }, [assetTypeCheckedState]);
+  }, [assetTypeCheckedState, showSidebar]);
 
   function reduceFilters(assets, filters) {
     const filterCount = filters.length;
@@ -86,8 +83,8 @@ export default function Filters({ assets, setAssets }) {
         }
       });
     });
-    let distincResults = [...new Set(result)];
-    return distincResults;
+    // let distincResults = [...new Set(result)];
+    return result;
   }
   // Filter the assets
   function getFilteredAssets() {
@@ -110,12 +107,11 @@ export default function Filters({ assets, setAssets }) {
       <div className="flex flex-col px-3 py-2 text-sm text-bue-100">
         <ul>
           {platformAssets.map((item, index) => {
-            const { count, i, id, name } = item;
+            const { count, id, name } = item;
             return (
               <Filter
                 key={id}
                 name={name}
-                checkedStateIndex={i}
                 id={id}
                 count={count}
                 idx={index}
@@ -130,12 +126,11 @@ export default function Filters({ assets, setAssets }) {
       <div className="flex flex-col px-3 py-2 text-sm text-blue-100">
         <ul>
           {typeAssets.map((item, index) => {
-            const { count, i, id, name } = item;
+            const { count, id, name } = item;
             return (
               <Filter
                 key={id}
                 name={name}
-                checkedStateIndex={i}
                 id={id}
                 count={count}
                 idx={index}
