@@ -11,7 +11,9 @@ export default function Asset({ asset }) {
     e.target.play();
   }
   function pause(e) {
-    e.target.pause();
+    if (e.target.play()) {
+      e.target.pause();
+    }
   }
 
   return (

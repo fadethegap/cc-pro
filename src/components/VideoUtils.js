@@ -21,23 +21,25 @@ export const Video = ({
   playFunction,
   pauseFunction,
   classesToApply,
-}) => (
-  <>
-    <video
-      onMouseEnter={playFunction}
-      onMouseLeave={pauseFunction}
-      src={videoSrcURL}
-      type={videoType}
-      loop
-      className={classesToApply}
-      muted
-    >
-      <track
-        src="captions_en.vtt"
-        kind="captions"
-        srcLang="en"
-        label="english_captions"
-      ></track>
-    </video>
-  </>
-);
+}) => {
+  return (
+    <>
+      <video
+        onMouseEnter={playFunction}
+        onMouseLeave={pauseFunction}
+        src={videoSrcURL}
+        type={videoType}
+        loop
+        className={classesToApply}
+        muted
+      >
+        <track
+          src="captions_en.vtt"
+          kind="captions"
+          srcLang="en"
+          label="english_captions"
+        ></track>
+      </video>
+    </>
+  );
+};
