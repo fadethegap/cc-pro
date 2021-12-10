@@ -1,10 +1,22 @@
 import React from "react";
 import { Link } from "gatsby";
+import { login, logout, isAuthenticated, getProfile } from "../utils/auth";
 
 export default function Header2() {
-  const handleClick = () => {
-    alert("Login not yet functional");
+  const handleLogin = () => {
+    login();
+    return <p>Redirecting to login...</p>;
   };
+
+  const handleLogout = () => {
+    logout();
+  };
+
+  // if (isAuthenticated()) {
+  //   const user = getProfile();
+  //   console.log(user);
+  // }
+  const user = getProfile();
 
   return (
     <div className="flex items-center justify-between bg-gradient-to-r from-black to-gray-700 text-blue-100 h-16 p-4">
@@ -33,11 +45,30 @@ export default function Header2() {
         </div>
       </div>
       <div>
-        <Link to="#">
-          <button className="bg-gray-500 text-gray-300 hover:bg-gray-100 hover:text-gray-500 transition duration-200 px-5 py-1 rounded">
+        {!isAuthenticated() ? (
+          <button
+            onClick={handleLogin}
+            className="bg-gray-500 text-gray-300 hover:bg-gray-100 hover:text-gray-500 transition duration-200 px-5 py-1 rounded"
+          >
             Login
           </button>
-        </Link>
+        ) : (
+          <div className="flex flex-inline">
+            {/* <div className=" text-blue-100">Hello</div> */}
+
+            <button
+              onClick={handleLogout}
+              className="bg-gray-500 text-gray-300 hover:bg-gray-100 hover:text-gray-500 transition duration-200 px-5 py-1 rounded"
+            >
+              Logout
+            </button>
+            <img
+              className="rounded-full h-10 ml-3"
+              src={user.picture}
+              alt={user.name}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
