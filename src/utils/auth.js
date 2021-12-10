@@ -5,9 +5,12 @@ const isBrowser = typeof window !== "undefined";
 
 const auth = isBrowser
   ? new auth0.WebAuth({
-      domain: process.env.AUTH0_DOMAIN,
-      clientID: process.env.AUTH0_CLIENTID,
-      redirectUri: process.env.AUTH0_CALLBACK,
+      domain: "dev-yy7qack4.us.auth0.com",
+      clientID: "6CtPV5C4FWHohpJE7D4la55ytOcreO9H",
+      redirectUri: "https://contentcreatorpro.netlify.app/callback",
+      // domain: process.env.AUTH0_DOMAIN,
+      // clientID: process.env.AUTH0_CLIENTID,
+      // redirectUri: process.env.AUTH0_CALLBACK,
       responseType: "token id_token",
       scope: "openid profile email",
     })
